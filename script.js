@@ -10,7 +10,7 @@
 
 */// Outra maneira de fazer o codigo asyncrono
 async function consultaCep(cep) {
-    
+    var mensagemErro = document.getElementById('erro');
     try{
         var consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         var consultaCEPValidado = await consultaCEP.json();
@@ -24,6 +24,7 @@ async function consultaCep(cep) {
         console.log(consultaCEPValidado);
         return consultaCEPValidado;
     }catch (erro){
+        mensagemErro.innerHTML = `<p>CEP inválido. Tente novamente!</p>`
         console.log(erro);
     }
 }
